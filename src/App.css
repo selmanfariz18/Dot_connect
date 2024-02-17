@@ -1,0 +1,18 @@
+.App {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Use the full height of the viewport */
+  text-align: center;
+  
+}
+
+a, button {
+  display: block; /* Make link and button block-level for text-align to take effect */
+  margin: 0 auto; /* Center block elements horizontally */
+}
+
+html, body, #root {
+  height: 100%;
+  margin: 0; /* Remove default margin */
+}

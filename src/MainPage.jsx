@@ -1,46 +1,11 @@
 import React, { useState } from "react";
 
 const MainPage = () => {
-  const [selectedButton, setSelectedButton] = useState(null);
+  const [selectedButton, setSelectedButton] = useState("");
 
-  // This function handles button clicks and sets the selected button
+  // Function to handle button click
   const handleButtonClick = (buttonId) => {
     setSelectedButton(buttonId);
-  };
-
-  // Generate button names and positions
-  const generateButtonLayout = () => {
-    const layout = [];
-    let buttonId = 0; // For naming buttons based on their position
-    // Define matrix dimensions
-    const rows = 6; // 6 rows total
-    const cols = 6; // 6 columns total
-    // Calculate total buttons to skip the center 3x3 matrix
-    const totalButtons = 24;
-
-    for (let i = 0; i < rows; i++) {
-      for (let j = 0; j < cols; j++) {
-        // Check if the position is on the border of the 6x6 matrix
-        if (i === 0 || i === rows - 1 || j === 0 || j === cols - 1) {
-          const buttonName = `R${i}C${j}`;
-          layout.push(
-            <button
-              key={buttonName}
-              style={{
-                backgroundColor:
-                  selectedButton === buttonName ? "green" : "initial",
-              }}
-              onClick={() => handleButtonClick(buttonName)}
-            >
-              {buttonName}
-            </button>
-          );
-          buttonId++;
-        }
-      }
-    }
-
-    return layout;
   };
 
   return (
@@ -48,13 +13,43 @@ const MainPage = () => {
       <div
         style={{
           display: "flex",
-          flexWrap: "wrap",
-          width: "300px",
-          justifyContent: "center",
-          gap: "10px",
+          flexDirection: "column",
+          alignItems: "center",
+          margin: "20px",
         }}
       >
-        {generateButtonLayout()}
+        {/* Button at the top-left corner */}
+        <button
+          style={{
+            backgroundColor: selectedButton === "R1C1" ? "green" : "gray",
+            margin: "5px",
+          }}
+          onClick={() => handleButtonClick("R1C1")}
+        >
+          R1C1
+        </button>
+
+        {/* Button at the top-center position */}
+        <button
+          style={{
+            backgroundColor: selectedButton === "R1C2" ? "green" : "gray",
+            margin: "5px",
+          }}
+          onClick={() => handleButtonClick("R1C2")}
+        >
+          R1C2
+        </button>
+
+        {/* Button at the top-right corner */}
+        <button
+          style={{
+            backgroundColor: selectedButton === "R1C3" ? "green" : "gray",
+            margin: "5px",
+          }}
+          onClick={() => handleButtonClick("R1C3")}
+        >
+          R1C3
+        </button>
       </div>
       {selectedButton && <p>Selected: {selectedButton}</p>}
     </div>
