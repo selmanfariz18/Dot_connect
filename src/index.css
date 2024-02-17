@@ -81,3 +81,13 @@ button:focus-visible {
   align-items: "center";
   margin: "20px";  
 }
+
+.column {
+  display: 'flex'; 
+  flex-direction: 'row'; 
+  align-items: 'flex-start';
+  -ms-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -webkit-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+}
