@@ -13,11 +13,14 @@ const colPadding = "5px";
 const colFontsize = "10px";
 
 const MainPage = () => {
-  const [selectedButton, setSelectedButton] = useState("");
+  const [selectedButtons, setSelectedButtons] = useState([]);
 
-  // Function to handle button click
   const handleButtonClick = (buttonId) => {
-    setSelectedButton(buttonId);
+    if (selectedButtons.includes(buttonId)) {
+      setSelectedButtons(selectedButtons.filter((id) => id !== buttonId));
+    } else {
+      setSelectedButtons([...selectedButtons, buttonId]);
+    }
   };
 
   return (
@@ -26,7 +29,9 @@ const MainPage = () => {
       <div className="row">
         <button
           style={{
-            backgroundColor: selectedButton === "R1C1" ? "green" : "gray",
+            backgroundColor: selectedButtons.includes("R1C1")
+              ? "green"
+              : "gray",
             height: rowHeight,
             width: rowWidth,
             padding: rowPadding,
@@ -39,7 +44,9 @@ const MainPage = () => {
 
         <button
           style={{
-            backgroundColor: selectedButton === "R1C2" ? "green" : "gray",
+            backgroundColor: selectedButtons.includes("R1C2")
+              ? "green"
+              : "gray",
             height: rowHeight,
             width: rowWidth,
             padding: rowPadding,
@@ -52,7 +59,9 @@ const MainPage = () => {
 
         <button
           style={{
-            backgroundColor: selectedButton === "R1C3" ? "green" : "gray",
+            backgroundColor: selectedButtons.includes("R1C3")
+              ? "green"
+              : "gray",
             height: rowHeight,
             width: rowWidth,
             padding: rowPadding,
@@ -68,7 +77,9 @@ const MainPage = () => {
       <div className="column">
         <button
           style={{
-            backgroundColor: selectedButton === "C1C1" ? "green" : "gray",
+            backgroundColor: selectedButtons.includes("C1C1")
+              ? "green"
+              : "gray",
             height: colHeight,
             width: colWidth,
             padding: colPadding,
@@ -82,7 +93,9 @@ const MainPage = () => {
 
         <button
           style={{
-            backgroundColor: selectedButton === "C1C2" ? "green" : "gray",
+            backgroundColor: selectedButtons.includes("C1C2")
+              ? "green"
+              : "gray",
             height: colHeight,
             width: colWidth,
             padding: colPadding,
@@ -96,7 +109,9 @@ const MainPage = () => {
 
         <button
           style={{
-            backgroundColor: selectedButton === "C1C3" ? "green" : "gray",
+            backgroundColor: selectedButtons.includes("C1C3")
+              ? "green"
+              : "gray",
             height: colHeight,
             width: colWidth,
             padding: colPadding,
@@ -109,7 +124,9 @@ const MainPage = () => {
         </button>
         <button
           style={{
-            backgroundColor: selectedButton === "C1C4" ? "green" : "gray",
+            backgroundColor: selectedButtons.includes("C1C4")
+              ? "green"
+              : "gray",
             height: colHeight,
             width: colWidth,
             padding: colPadding,
@@ -126,7 +143,9 @@ const MainPage = () => {
       <div className="row">
         <button
           style={{
-            backgroundColor: selectedButton === "R2C1" ? "green" : "gray",
+            backgroundColor: selectedButtons.includes("R2C1")
+              ? "green"
+              : "gray",
             height: rowHeight,
             width: rowWidth,
             padding: rowPadding,
@@ -139,7 +158,9 @@ const MainPage = () => {
 
         <button
           style={{
-            backgroundColor: selectedButton === "R2C2" ? "green" : "gray",
+            backgroundColor: selectedButtons.includes("R2C2")
+              ? "green"
+              : "gray",
             height: rowHeight,
             width: rowWidth,
             padding: rowPadding,
@@ -152,7 +173,9 @@ const MainPage = () => {
 
         <button
           style={{
-            backgroundColor: selectedButton === "R2C3" ? "green" : "gray",
+            backgroundColor: selectedButtons.includes("R2C3")
+              ? "green"
+              : "gray",
             height: rowHeight,
             width: rowWidth,
             padding: rowPadding,
@@ -168,7 +191,9 @@ const MainPage = () => {
       <div className="column">
         <button
           style={{
-            backgroundColor: selectedButton === "C2C1" ? "green" : "gray",
+            backgroundColor: selectedButtons.includes("C2C1")
+              ? "green"
+              : "gray",
             height: colHeight,
             width: colWidth,
             padding: colPadding,
@@ -182,7 +207,9 @@ const MainPage = () => {
 
         <button
           style={{
-            backgroundColor: selectedButton === "C2C2" ? "green" : "gray",
+            backgroundColor: selectedButtons.includes("C2C2")
+              ? "green"
+              : "gray",
             height: colHeight,
             width: colWidth,
             padding: colPadding,
@@ -196,7 +223,9 @@ const MainPage = () => {
 
         <button
           style={{
-            backgroundColor: selectedButton === "C2C3" ? "green" : "gray",
+            backgroundColor: selectedButtons.includes("C2C3")
+              ? "green"
+              : "gray",
             height: colHeight,
             width: colWidth,
             padding: colPadding,
@@ -209,7 +238,9 @@ const MainPage = () => {
         </button>
         <button
           style={{
-            backgroundColor: selectedButton === "C2C4" ? "green" : "gray",
+            backgroundColor: selectedButtons.includes("C2C4")
+              ? "green"
+              : "gray",
             height: colHeight,
             width: colWidth,
             padding: colPadding,
@@ -226,7 +257,9 @@ const MainPage = () => {
       <div className="row">
         <button
           style={{
-            backgroundColor: selectedButton === "R3C1" ? "green" : "gray",
+            backgroundColor: selectedButtons.includes("R3C1")
+              ? "green"
+              : "gray",
             height: rowHeight,
             width: rowWidth,
             padding: rowPadding,
@@ -239,7 +272,9 @@ const MainPage = () => {
 
         <button
           style={{
-            backgroundColor: selectedButton === "R3C2" ? "green" : "gray",
+            backgroundColor: selectedButtons.includes("R3C2")
+              ? "green"
+              : "gray",
             height: rowHeight,
             width: rowWidth,
             padding: rowPadding,
@@ -252,7 +287,9 @@ const MainPage = () => {
 
         <button
           style={{
-            backgroundColor: selectedButton === "R3C3" ? "green" : "gray",
+            backgroundColor: selectedButtons.includes("R3C3")
+              ? "green"
+              : "gray",
             height: rowHeight,
             width: rowWidth,
             padding: rowPadding,
@@ -268,7 +305,9 @@ const MainPage = () => {
       <div className="column">
         <button
           style={{
-            backgroundColor: selectedButton === "C3C1" ? "green" : "gray",
+            backgroundColor: selectedButtons.includes("C3C1")
+              ? "green"
+              : "gray",
             height: colHeight,
             width: colWidth,
             padding: colPadding,
@@ -282,7 +321,9 @@ const MainPage = () => {
 
         <button
           style={{
-            backgroundColor: selectedButton === "C3C2" ? "green" : "gray",
+            backgroundColor: selectedButtons.includes("C3C2")
+              ? "green"
+              : "gray",
             height: colHeight,
             width: colWidth,
             padding: colPadding,
@@ -296,7 +337,9 @@ const MainPage = () => {
 
         <button
           style={{
-            backgroundColor: selectedButton === "C3C3" ? "green" : "gray",
+            backgroundColor: selectedButtons.includes("C3C3")
+              ? "green"
+              : "gray",
             height: colHeight,
             width: colWidth,
             padding: colPadding,
@@ -309,7 +352,9 @@ const MainPage = () => {
         </button>
         <button
           style={{
-            backgroundColor: selectedButton === "C3C4" ? "green" : "gray",
+            backgroundColor: selectedButtons.includes("C3C4")
+              ? "green"
+              : "gray",
             height: colHeight,
             width: colWidth,
             padding: colPadding,
@@ -326,7 +371,9 @@ const MainPage = () => {
       <div className="row">
         <button
           style={{
-            backgroundColor: selectedButton === "R4C1" ? "green" : "gray",
+            backgroundColor: selectedButtons.includes("R4C1")
+              ? "green"
+              : "gray",
             height: rowHeight,
             width: rowWidth,
             padding: rowPadding,
@@ -339,7 +386,9 @@ const MainPage = () => {
 
         <button
           style={{
-            backgroundColor: selectedButton === "R4C2" ? "green" : "gray",
+            backgroundColor: selectedButtons.includes("R4C2")
+              ? "green"
+              : "gray",
             height: rowHeight,
             width: rowWidth,
             padding: rowPadding,
@@ -352,7 +401,9 @@ const MainPage = () => {
 
         <button
           style={{
-            backgroundColor: selectedButton === "R4C3" ? "green" : "gray",
+            backgroundColor: selectedButtons.includes("R4C3")
+              ? "green"
+              : "gray",
             height: rowHeight,
             width: rowWidth,
             padding: rowPadding,
@@ -363,7 +414,18 @@ const MainPage = () => {
           R4C3
         </button>
       </div>
-      {selectedButton && <p>Selected: {selectedButton}</p>}
+      {selectedButtons.length > 0 && (
+        <div>
+          <p>Selected Buttons:</p>
+          <ul style={{ display: "flex", listStyle: "none", padding: 0 }}>
+            {selectedButtons.map((buttonId) => (
+              <li key={buttonId} style={{ marginRight: "10px" }}>
+                {buttonId}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   );
 };
