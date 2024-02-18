@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useEffect } from "react";
 
 //row constants
 const rowHeight = "20px";
@@ -13,6 +14,16 @@ const colPadding = "5px";
 const colFontsize = "10px";
 
 const MainPage = () => {
+  useEffect(() => {
+    // Set a flag in localStorage when MainPage mounts
+    localStorage.setItem("wasOnMainPage", "true");
+
+    // Optional: Clean up the flag when leaving MainPage
+    return () => {
+      localStorage.removeItem("wasOnMainPage");
+    };
+  }, []);
+
   const [selectedButtons, setSelectedButtons] = useState([]);
 
   const handleButtonClick = (buttonId) => {
