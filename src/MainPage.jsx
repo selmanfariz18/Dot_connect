@@ -62,9 +62,13 @@ const MainPage = () => {
 
   return (
     <div>
-      <p>Current Turn: {currentUser}</p>
       <p>
-        User1 Points: {userPoints.User1} | User2 Points: {userPoints.User2}
+        Current Turn:<a style={{ fontSize: "30px" }}> {currentUser}</a>
+      </p>
+      <p>
+        User1 Points:<a style={{ fontSize: "50px" }}> {userPoints.User1}</a> |
+        User2 Points:
+        <a style={{ fontSize: "50px" }}> {userPoints.User2}</a>
       </p>
       {/*row 1*/}
       <div className="row">
