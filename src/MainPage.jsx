@@ -60,6 +60,23 @@ const MainPage = () => {
     setUserPoints(newUserPoints);
   };
 
+  const isGameOver = () => {
+    // Assuming you have a total of 12 unique buttons based on your sets array
+    return selectedButtons.length === 24;
+  };
+
+  const getWinner = () => {
+    if (userPoints.User1 > userPoints.User2) return "User1";
+    else if (userPoints.User1 < userPoints.User2) return "User2";
+    else return "Draw";
+  };
+
+  const restartGame = () => {
+    setSelectedButtons([]);
+    setCurrentUser("User1");
+    setUserPoints({ User1: 0, User2: 0 });
+  };
+
   return (
     <div>
       <p>
@@ -459,6 +476,28 @@ const MainPage = () => {
           R4C3
         </button>
       </div>
+      {/* Game Over Overlay */}
+      {isGameOver() && (
+        <div
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: "rgba(0, 0, 0, 0.5)",
+            color: "white",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+            fontSize: "20px",
+          }}
+        >
+          <div>{getWinner() === "Draw" ? "Draw" : `${getWinner()} wins!`}</div>
+          <button onClick={restartGame}>Restart</button>
+        </div>
+      )}
     </div>
   );
 };
