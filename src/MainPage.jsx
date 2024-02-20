@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 // Row and column constants
 const rowHeight = "20px";
@@ -32,50 +31,97 @@ const MainPage = () => {
   }, []);
 
   const [selectedButtons, setSelectedButtons] = useState([]);
-  const [currentUser, setCurrentUser] = useState("User1");
-  const [userPoints, setUserPoints] = useState({ User1: 0, User2: 0 });
+  const [currentUser, setCurrentUser] = useState("");
+  const [userPoints, setUserPoints] = useState({});
+  const [gameStarted, setGameStarted] = useState(false);
+  const [playerNames, setPlayerNames] = useState({ player1: "", player2: "" });
 
   const handleButtonClick = (buttonId) => {
     if (!selectedButtons.includes(buttonId)) {
       setSelectedButtons([...selectedButtons, buttonId]);
-      // Check for completed sets and assign points before switching turns
       checkAndAssignPoints(buttonId);
-      // Switch turns
-      setCurrentUser(currentUser === "User1" ? "User2" : "User1");
+      setCurrentUser(
+        currentUser === playerNames.player1
+          ? playerNames.player2
+          : playerNames.player1
+      );
     }
   };
 
   const checkAndAssignPoints = (buttonId) => {
     const newUserPoints = { ...userPoints };
     sets.forEach((set) => {
-      if (set.includes(buttonId)) {
-        // Check if all buttons in the set are selected
-        if (
-          set.every((id) => selectedButtons.includes(id) || id === buttonId)
-        ) {
-          newUserPoints[currentUser] += 1; // Assign point to the current user
-        }
+      if (
+        set.includes(buttonId) &&
+        set.every((id) => selectedButtons.includes(id) || id === buttonId)
+      ) {
+        newUserPoints[currentUser] += 1;
       }
     });
     setUserPoints(newUserPoints);
   };
 
-  const isGameOver = () => {
-    // Assuming you have a total of 12 unique buttons based on your sets array
-    return selectedButtons.length === 24;
-  };
+  const isGameOver = () => selectedButtons.length === 24;
 
   const getWinner = () => {
-    if (userPoints.User1 > userPoints.User2) return "User1";
-    else if (userPoints.User1 < userPoints.User2) return "User2";
+    const score1 = userPoints[playerNames.player1] || 0;
+    const score2 = userPoints[playerNames.player2] || 0;
+
+    if (score1 > score2) return playerNames.player1;
+    else if (score1 < score2) return playerNames.player2;
     else return "Draw";
   };
 
   const restartGame = () => {
     setSelectedButtons([]);
-    setCurrentUser("User1");
-    setUserPoints({ User1: 0, User2: 0 });
+    setCurrentUser(playerNames.player1);
+    setUserPoints({ [playerNames.player1]: 0, [playerNames.player2]: 0 });
+    setGameStarted(true);
   };
+
+  const handleNameSubmit = (event) => {
+    event.preventDefault();
+    setCurrentUser(playerNames.player1);
+    setUserPoints({ [playerNames.player1]: 0, [playerNames.player2]: 0 });
+    setGameStarted(true);
+  };
+
+  const handleNameChange = (event) => {
+    const { name, value } = event.target;
+    setPlayerNames({ ...playerNames, [name]: value });
+  };
+
+  if (!gameStarted) {
+    return (
+      <div>
+        <form onSubmit={handleNameSubmit}>
+          <label>
+            Player 1 Name:
+            <input
+              type="text"
+              name="player1"
+              value={playerNames.player1}
+              onChange={handleNameChange}
+              required
+            />
+          </label>
+          <br />
+          <label>
+            Player 2 Name:
+            <input
+              type="text"
+              name="player2"
+              value={playerNames.player2}
+              onChange={handleNameChange}
+              required
+            />
+          </label>
+          <br />
+          <button type="submit">Start Game</button>
+        </form>
+      </div>
+    );
+  }
 
   return (
     <div>
@@ -83,10 +129,16 @@ const MainPage = () => {
         Current Turn:<a style={{ fontSize: "30px" }}> {currentUser}</a>
       </p>
       <p>
-        User1 Points:<a style={{ fontSize: "50px" }}> {userPoints.User1}</a> |
-        User2 Points:
-        <a style={{ fontSize: "50px" }}> {userPoints.User2}</a>
+        {playerNames.player1} Points:{" "}
+        <span style={{ fontSize: "50px" }}>
+          {userPoints[playerNames.player1] || 0}
+        </span>{" "}
+        |{playerNames.player2} Points:{" "}
+        <span style={{ fontSize: "50px" }}>
+          {userPoints[playerNames.player2] || 0}
+        </span>
       </p>
+
       {/*row 1*/}
       <div className="row">
         <button
