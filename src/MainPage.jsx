@@ -129,11 +129,11 @@ const MainPage = () => {
         Current Turn:<a style={{ fontSize: "30px" }}> {currentUser}</a>
       </p>
       <p>
-        {playerNames.player1} Points:{" "}
+        <span style={{ color: "red" }}>{playerNames.player1}</span> Points:{" "}
         <span style={{ fontSize: "50px" }}>
           {userPoints[playerNames.player1] || 0}
         </span>{" "}
-        |{playerNames.player2} Points:{" "}
+        |<span style={{ color: "orange" }}>{playerNames.player2}</span> Points:{" "}
         <span style={{ fontSize: "50px" }}>
           {userPoints[playerNames.player2] || 0}
         </span>
